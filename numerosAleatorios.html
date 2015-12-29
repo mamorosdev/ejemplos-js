@@ -1,0 +1,38 @@
+Enter file contents here<!doctype html>
+<html lang="es">
+<head>
+<title>TEST NÚMEROS ALEATORIOS</title>
+<!-- <script src="http://code.jquery.com/jquery-1.10.2.js"></script> -->
+<script language="javascript">
+	function imprimirNumerosAleatorios() {
+		var resultado = "<label>[";
+		var nveces = 50;
+		var nvars = [];
+		for(var n=0; n<6; n++) {
+			nvars[n] = 0;
+		}
+		var numerosResultado = "";
+		for(var i=0; i<nveces; i++) {
+			var rndNumber = Math.floor(1 + (Math.random() * 6));
+			nvars[rndNumber-1] = nvars[rndNumber-1] + 1; 
+			numerosResultado += rndNumber+";";
+		}
+		resultado += numerosResultado + "</label><label><ol>";
+		for(var n=0; n<6; n++) {
+			resultado += "<li>Resultado " + (n+1) + "=" + nvars[n]+";" + (Math.floor((nvars[n]/nveces)*100))+"%</li>";
+		}
+		resultado += "</ol></label>";
+		// Sin Jquery:
+		document.getElementById("resultados").innerHTML=resultado;
+		// Con Jquery:
+		// $("#resultados").html(resultado);
+	}
+
+</script>
+</head>
+<body>
+<h3>EJEMPLO 50 TIRADAS ALEATORIAS A UN DADO (resultados del 1 al 6)</h3>
+<input type="submit" onclick="imprimirNumerosAleatorios()" value="Generar"/> 
+<p><div id="resultados"/></p>
+</body>
+</html>
