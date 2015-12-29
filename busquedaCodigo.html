@@ -1,0 +1,51 @@
+<HTML><HEAD>
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<SCRIPT>
+	var listaCodigosApp = [2,4,5,8];
+	var LISTA_CODIGO_APP_LENGTH = listaCodigosApp.length;
+
+	function buscarCodigo() {
+		var val = document.getElementById("codigo").value;
+		var resultado = "";
+		if(val.length>0) {
+			var found = false;
+			for(var i = 0; i < LISTA_CODIGO_APP_LENGTH && !found; i++) {
+				found = listaCodigosApp[i]==val;
+			}
+			if(found) {
+				resultado="EXISTE!"
+			} else {
+				resultado="Pues no existe."
+			}
+		} else {
+			resultado="Introduce un código por favor.";
+		}
+		document.getElementById("resultado").innerHTML=resultado;
+	}
+	
+	function listarCodigos() {
+		var labelLista = document.getElementById("listaCodigos").innerHTML;
+		var lista = "";
+		for(var i = 0; i < LISTA_CODIGO_APP_LENGTH; i++) {
+			lista = lista+listaCodigosApp[i]
+			if( i < LISTA_CODIGO_APP_LENGTH-1) { 
+				lista=lista+",";
+			}
+		}
+		document.getElementById("listaCodigos").innerHTML=labelLista+lista;
+		document.getElementById("botonListar").disabled=true;
+	}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>PRUEBA ALGORITMO BUSQUEDA</H1>
+<P><LABEL id="lblBuscaCodigo">EL CODIGO DE QUE VAS A INTRODUCIR EXISTE?</LABEL></P>
+<P><INPUT id="codigo" TYPE="TEXT" VALUE="" />
+<P><INPUT TYPE="BUTTON" id="botonBuscar" value="Buscar código"ONCLICK="buscarCodigo()" /></P>
+<P><LABEL id="resultado"></LABEL></P>
+<P><LABEL id="lblListaCodigos">LISTA CODIGOS EXISTENTES. </LABEL></P>
+<P><INPUT TYPE="BUTTON" id="botonListar" value="Listar códigos" ONCLICK="listarCodigos()" /></P>
+<P><DIV id="listaCodigos"></DIV></P>
+</P>
+</BODY>
+</HTML>
