@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ejemplo validación de formularios con Java Script. </title>
+<style>
+    ul{
+        list-style:none;
+    }
+    label{
+        width:150px;
+        display:block;
+        float:left;
+    }
+</style>
+<script type='text/javascript'>
+	function validar(){
+
+		var campos_ok = true;
+		var resultado = "";
+		var nombreUsuario = "";
+
+		if(document.getElementById('nombre').value.length < 2 ){
+			campos_ok = false;
+		}
+		nombreUsuario = document.getElementById('nombre').value;
+
+		if(document.getElementById('apellidos').value.length < 4 ){
+			campos_ok = false;
+		}
+
+		if(isNaN(document.getElementById('edad').value)){
+			campos_ok = false;
+		}
+
+		var expresion = /^[a-z][\w.-]+@\w[\w.-]+\.[\w.-]*[a-z][a-z]$/i;
+		var email = document.form1.email.value;
+		if (!expresion.test(email)){
+			campos_ok = false;
+		}
+
+		if(document.getElementById('pais').value == ''){
+			campos_ok = false;
+		}
+
+		if(!document.getElementById('condiciones').checked){
+			campos_ok = false;
+		}
+
+		if(!campos_ok){
+			resultados = 'Algunos campos no están informados correctamente.';
+		} else {
+			resultados = nombreUsuario + ' has sido registrado correctamente.';
+		}
+		document.getElementById('resultados').innerHTML=resultados;
+		// Si todos los campos se han introducido correctamente
+		// Mostrar por pantalla los datos enviados.
+		return campos_ok;
+	}
+</script>
+
+</head>
+    <body>
+    <h2>Ejemplo de formulario de validación de campos con Javascript</h2>
+	<div id="resultados"></div>
+	<form name="form1" onsubmit='return validar();'>
+		<ul>
+			<li>
+				<label for='nombre'>Nombre</label>
+				<input type='text' name='nombre' id='nombre' />
+			</li>
+			<li>
+				<label for='apellidos'>Direccion</label>
+				<input type='text' name='apellidos' id='apellidos'/>
+			</li>
+			<li>
+				<label for='edad'>Edad</label>
+				<input type='text' name='edad' id='edad'/>
+			</li>
+			 <li>
+				<label for='email'>E-mail</label>
+				<input type='text' name='email' id='email'/>
+			</li>
+			<li>
+				<label for='pais'>Pais</label>
+				<select id='pais' name='pais'/>
+					<option value=''>Seleccione</option>
+					<option>España</option>
+					<option>Francia</option>
+					<option>Italia</option>
+					<option>Portugal</option>
+				</select>
+			</li>
+			<!-- <label for='condiciones'></label> -->
+		<li>	
+			<label>	He leido y acepto las condiciones.
+			<input type='checkbox' value='SI' id='condiciones'/>
+			</label>
+		</li>
+		</ul>
+		<label><button>Registrarse</button></label>
+	</form>
+</body>
+</html>
