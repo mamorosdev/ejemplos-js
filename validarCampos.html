@@ -13,47 +13,72 @@
     }
 </style>
 <script type='text/javascript'>
+
 	function validar(){
 
 		var campos_ok = true;
+		var lista_campos_error="";
 		var resultado = "";
 		var nombreUsuario = "";
-
+		
+		// 1. Validar campos de texto nombre y apellidos.
 		if(document.getElementById('nombre').value.length < 2 ){
 			campos_ok = false;
+			lista_campos_error+='nombre ';
 		}
-		nombreUsuario = document.getElementById('nombre').value;
 
 		if(document.getElementById('apellidos').value.length < 4 ){
 			campos_ok = false;
+			lista_campos_error+='apellidos ';
 		}
+		
+		nombreUsuario = document.getElementById('nombre').value
+			+ ' ' + document.getElementById('apellidos').value;
 
+		// 2. Validar campo numérico edad.
 		if(isNaN(document.getElementById('edad').value)){
 			campos_ok = false;
+			lista_campos_error+='edad ';
 		}
 
+		// 3. Validar campos de texto con expresiones regulares: email y dni.
 		var expresion = /^[a-z][\w.-]+@\w[\w.-]+\.[\w.-]*[a-z][a-z]$/i;
 		var email = document.form1.email.value;
 		if (!expresion.test(email)){
 			campos_ok = false;
+			lista_campos_error+='email ';
 		}
-
-		if(document.getElementById('pais').value == ''){
+		
+		/* var dni = document.getElementById("dni").value;
+		var letrasDNI = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N',
+			'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+			
+		if( !(/^\d{8}[A-Z]$/.test(dni)) && dni.charAt(8) != letrasDNI[(dni.substring(0, 8))%23]) {
 			campos_ok = false;
-		}
+			lista_campos_error+='email ';
+		} */
 
+		// 4. Validar campos de selección: elegir un país de un campo select;
+		if(document.getElementById('pais').selectedIndex == 0){
+			campos_ok = false;
+			lista_campos_error+='pais ';
+		}
+		pais = document.getElementById('pais').options[document.getElementById('pais').selectedIndex].value;
+
+		// 5. Validar campo checkbox.
 		if(!document.getElementById('condiciones').checked){
 			campos_ok = false;
+			lista_campos_error+='condiciones ';
 		}
 
+		// Finalmente, mostrar por pantalla si todo ha ido bien, o si hay campos mal informados y cuales son.
 		if(!campos_ok){
-			resultados = 'Algunos campos no están informados correctamente.';
+			resultados = 'Algunos campos no están informados correctamente: ' 
+				+ lista_campos_error;
+			document.getElementById('resultados').innerHTML=resultados;
 		} else {
-			resultados = nombreUsuario + ' has sido registrado correctamente.';
+			alert(nombreUsuario + ' de ' + pais + ' has sido registrado correctamente.');
 		}
-		document.getElementById('resultados').innerHTML=resultados;
-		// Si todos los campos se han introducido correctamente
-		// Mostrar por pantalla los datos enviados.
 		return campos_ok;
 	}
 </script>
@@ -76,7 +101,7 @@
 				<label for='edad'>Edad</label>
 				<input type='text' name='edad' id='edad'/>
 			</li>
-			 <li>
+			<li>
 				<label for='email'>E-mail</label>
 				<input type='text' name='email' id='email'/>
 			</li>
@@ -90,12 +115,11 @@
 					<option>Portugal</option>
 				</select>
 			</li>
-			<!-- <label for='condiciones'></label> -->
-		<li>	
-			<label>	He leido y acepto las condiciones.
-			<input type='checkbox' value='SI' id='condiciones'/>
-			</label>
-		</li>
+			<li>	
+				<label>	He leido y acepto las condiciones.
+				<input type='checkbox' value='SI' id='condiciones'/>
+				</label>
+			</li>
 		</ul>
 		<label><button>Registrarse</button></label>
 	</form>
