@@ -1,0 +1,28 @@
+#cabecera{
+    background-color:gray;
+    color:red;
+    font-size:48px;
+}
+
+#principal{
+    border:solid;
+    border-width:5px;
+    font-size:14px;
+    width:25%;
+    font-family:Verdana;
+    margin-top:20px;
+}
+
+#fondo{
+    margin-top:10px;
+    margin-left:30px;
+}
+
+.amarillo{
+    background-color:yellow;
+}
+
+.morado{
+    background-color:#114477;
+    color:white;
+}

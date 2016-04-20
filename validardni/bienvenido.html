@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+    <head>
+        <title>Acceso por NIF.</title>
+        <link rel="stylesheet" type="text/css" href="./css/estilo.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript">
+			function cargaPagina() {
+				var storage = localStorage; 
+				var dniUsuario = storage.getItem('dni1');
+				document.getElementById("dniUsuario").innerHTML=dniUsuario;
+			}
+		</script>
+    </head>
+    <body onload="cargaPagina()">
+        <p>BIENVENID@ USUARIO CON DNI <span id="dniUsuario"/> </p>
+		<p><a href="./acceso.html" > VOLVER </a> </p>
+    </body>
+</html>
