@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ejemplo validación de formularios con Java Script. </title>
+<script type='text/javascript'>
+
+	var fruteriaJSON = 
+	{"Fruteria":
+	 [
+	  {"Fruta":
+	   [
+		{"Nombre":"Manzana","Cantidad":10},
+		{"Nombre":"Fresa","Cantidad":70},
+		{"Nombre":"Naranja","Cantidad":30}
+	   ]
+	  },
+	  {"Verdura":
+	   [
+		{"Nombre":"Lechuga","Cantidad":80},
+		{"Nombre":"Tomate","Cantidad":15}
+	   ]
+	  }
+	 ]
+	};
+
+	function cargarFruteria(){
+
+		var frutas = JSON.stringify(fruteriaJSON["Fruteria"][0]["Fruta"]);
+		document.getElementById('frutas').innerHTML=frutas;
+		
+		var manzanas = JSON.stringify(fruteriaJSON["Fruteria"][0]["Fruta"][0]);
+		document.getElementById('manzanas').innerHTML=manzanas;
+		
+		var verduras = JSON.stringify(fruteriaJSON["Fruteria"][1]["Verdura"]);
+		document.getElementById('verduras').innerHTML=verduras;
+	}
+</script>
+
+</head>
+<body onload="cargarFruteria()">
+    <h2>Mostrar inventario fruteria en Javascript, en formato JSON</h2>
+	<p>Frutas:<div id="frutas"></div></p>
+	<p>Manzanas:<div id="manzanas"></div></p>
+	<p>Verduras:<div id="verduras"></div></p>
+	<p>Verduras:<div id="verduras"></div></p>
+</body>
+</html>
