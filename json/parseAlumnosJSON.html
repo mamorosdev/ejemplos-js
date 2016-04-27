@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<head>
+<title>JSON PARSE EXAMPLE</title>
+<script language="javascript">
+	function jsonParse() {
+		var strOutputJSON="[";
+		var inputTextArea = document.getElementById("inputTextArea").value;
+		var arrayAlumnos = inputTextArea.split("\n");
+		// Variables auxiliares para tratar los resultados de cada alumno.
+		var contador;
+		var numAlumnosIntro = arrayAlumnos.length;
+		var datosAlumno;
+		for(contador = 0; contador < numAlumnosIntro; contador++) {
+			// Cojo una linea de datos del alumno.
+			datosAlumno=arrayAlumnos[contador].split(",");
+			// alert()
+			if(datosAlumno.length==4) {
+				nombreAlumnoAux=datosAlumno[0];
+				strOutputJSON += 
+					"{'Alumno':'"+datosAlumno[0]+
+					",'nota1t':"+datosAlumno[1]+
+					",'nota2t':"+datosAlumno[2]+
+					",'nota3t':"+datosAlumno[3]+
+					"},";
+			} else {
+				strOutputJSON = 
+					"[Error al procesar los datos del alumno de la linea " + String(contador);
+			}
+		}
+		// Elimino la ultima coma del JSON. (pendiente)
+		// strOutputJSON=strOutputJSON.substr(0,strOutputJSON.length-1);
+		// Imprimo el resultado final en el formulario.
+		strOutputJSON += "]";
+		document.getElementById("outputJSONTextArea").innerHTML=strOutputJSON;
+	}
+</script>
+</head>
+<body>
+<h1>STRING TO JSON EXAMPLE</h1>
+<p>Introduce el nombre y las notas trimestrales de unos alumnos y se formará una estructura en JSON. Por ejemplo:</p>
+<p>Laura, 7.5, 6, 8</p>
+<p>Albert, 5, 6.5, 7</p>
+<p><textarea id="inputTextArea" rows="6" cols="80"></textarea></p>
+<input type="submit" onclick="jsonParse()" value="Transformar"/> 
+<p><textarea id="outputJSONTextArea" rows="40" disabled="disabled" cols="80"></textarea></p>
+</body>
+</html>
