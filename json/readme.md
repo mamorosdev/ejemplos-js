@@ -1,1 +1,14 @@
-des
+# mostrarJSON.html
+Este es un ejemplo básico que muestra por HTML partes de un fichero JSON con datos de una fruteria.
+Para ello uso el método nativo JSON.stringify.
+
+# parseAlumnosJSON.html 
+Este programa permite convertir una lista de alumnos introducidos por texto a formato JSON.
+
+Formato entrada:
+Laura, 7.5, 6, 8
+Albert, 5, 6.5, 7
+
+Formato salida:
+[{'Alumno':'Laura,'nota1t': 7.5,'nota2t': 6,'nota3t': 8},
+{'Alumno':'Albert,'nota1t': 5,'nota2t': 6.5,'nota3t': 7}]
