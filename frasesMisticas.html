@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title>GENERADOR FRASES MÍSTICAS</title>
+<meta charset="UTF-8">
+<style type="text/css">
+	div { 
+		margin-bottom: 6px; 
+	}
+</style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script language="javascript">
+	
+	var frasesMisticas = [
+		"The beat of your heart is the rhythm of your soul.",
+		// El latido de tu corazón es el ritmo de tu alma.
+		"Love what is ahead by loving what has come before.",
+		// Ama lo que está por venir, amando lo que vino antes.
+		"We are spiritual beings having a human experience.",
+		// Nosotros somos seres espirituales teniendo una experiencia humana.
+		"True understanding is found through compassion.",
+		// El verdadero entendimiento se encuentra através de la compasión.
+		"Inspiring others towards happiness brings you happiness.",
+		// Inspirando a otros hacia la felicidad te trae felicidad.
+		"The mind is given to you, you are not given to the mind.",
+		// La mente te ha sido dada a ti, tu no has sido dado a tu mente.
+		"True wealth is the ability to let go of your possessions.",
+		// La verdadera riqueza es la capacidad de dejar tus posesiones.
+		"Only share your strengths, not your weaknesses.",
+		// Solo comparte tus puntos fuertes, no tus debilidades.
+	];
+	
+	function mostrarNumFrases() {
+		var numFrases = frasesMisticas.length;
+		$("#numFrases").html("Tengo " + numFrases + " frases para mostrarte.");
+	}	
+	
+	$(document).ready(function(){
+		// Inicialización.
+		mostrarNumFrases();
+		// Eventos botones.
+		$("#generarFrase").click(generarFrase);
+		$("#insertarFrase").click(insertarFrase);
+	});
+	
+	function generarFrase() {
+		var numFrases = frasesMisticas.length;
+		var rndNumber = Math.floor(1 + (Math.random() * numFrases));
+		var resultado = frasesMisticas[rndNumber-1];
+		// Borrar la frase una vez obtenida.
+		frasesMisticas.splice(rndNumber-1,1);
+		mostrarNumFrases();
+		$("#resultados").html(resultado);
+	}
+	
+	function insertarFrase() {
+		var nuevaFrase = $("#nuevaFrase").val();
+		if(nuevaFrase.length>0) {
+			frasesMisticas.push(nuevaFrase);
+		}
+		mostrarNumFrases();
+	}
+</script>
+</head>
+<body>
+<h3>GENERADOR FRASES MÍSTICAS.</h3>
+<div id="numFrases"></div>
+<div>
+<input id="nuevaFrase" type="text" value="" />
+<input type="button" id="insertarFrase" value="Insertar nueva frase"/>
+</div>
+<div>
+<input type="button" id="generarFrase" value="Generar frase"/>
+</div> 
+<p><div id="resultados"/></p>
+</body>
+</html>
