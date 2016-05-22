@@ -3,6 +3,6 @@ Ejemplos de funciones JavaScript que me encuentro o preveo encontrar en mi dia a
 
 * En la carpeta JSON hay ejemplos básicos para aprender a tratar objetos JSON.
 * frasesMisticas es un ejemplo didáctico y divertido que usa JQuery para cargar una frase con un mensaje místico seleccionado aleatoriament de un array; y además permite añadir nuevas frases.
-* El ejemplo de la carpeta validadni es bastante básico; pero prueba la transferencia de datos entre varias páginas.
+* El ejemplo de la carpeta validadni es bastante básico. Sirve para probar la transferencia de datos entre varias páginas.
 * Los demás ejemplos son, sobretodo, ejemplos de validaciones de campos síncronas.
 
