@@ -2,6 +2,11 @@
 Este es un ejemplo básico que muestra por HTML partes de un fichero JSON con datos de una fruteria.
 Para ello uso el método nativo JSON.stringify.
 
+#Ej1JSONFac.html
+Este ejemplo muestra por pantalla una tabla con una factura obtenida a través de un objeto.
+A pesar de que la forma de pintar la tabla es bastante obsoleta; me ha parecido bastante interesante incluir 
+este ejemplo, con una estructura de datos más compleja.
+
 # parseAlumnosJSON.html 
 Este programa permite convertir una lista de alumnos introducidos por texto a formato JSON.
 
