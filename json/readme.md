@@ -11,11 +11,6 @@ Este ejemplo muestra por pantalla una tabla con una factura obtenida a través d
 A pesar de que la forma de pintar la tabla es bastante obsoleta; me ha parecido bastante interesante incluir 
 este ejemplo, con una estructura de datos más compleja.
 
-### TablaFacturaJSON.html
-Este ejemplo muestra por pantalla una tabla con una factura obtenida a través de un objeto.
-A pesar de que la forma de pintar la tabla es bastante obsoleta; me ha parecido bastante interesante incluir 
-este ejemplo, con una estructura de datos más compleja.
-
 ### parseAlumnosJSON.html 
 Este programa permite convertir una lista de alumnos introducidos por texto a formato JSON.
 
