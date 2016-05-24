@@ -3,19 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Ejercicio 1 - FACTURA GENERADA A PARTIR DE UN OBJETO JSON</title>
+<title>FACTURA GENERADA A PARTIR DE UN OBJETO JSON</title>
 <script type="text/javascript">
-// Estructura básica del objeto Factura
+// Estructura bÃ¡sica del objeto Factura
 var factura = {
 	empresa: {
 		nombre: "Nombre de la empresa",
-		direccion: "Dirección de la empresa",
+		direccion: "DirecciÃ³n de la empresa",
 		telefono: "900900900",
 		nif: ""
 	},
 	cliente: {
 		nombre: "Merkadonline",
-		direccion: "Dirección del cliente",
+		direccion: "DirecciÃ³n del cliente",
 		telefono: "600600600",
 		nif: "XXXXXXXXX"
 	},
@@ -36,7 +36,7 @@ var factura = {
 };
 var cabeceraTablaFactura = ["Producto","Cantidad","Pr.Unidad","Pr.Subtotal"];
 
-// Método para pintar la factura y calcular el total.
+// MÃ©todo para pintar la factura y calcular el total.
 factura.calculaTotal = function() {
 	
 	var tablaResultados = "<table><tr>";
@@ -59,7 +59,7 @@ factura.calculaTotal = function() {
 	this.informacion.total = this.informacion.baseImponible + this.informacion.baseImponible * this.informacion.iva/100;
 }
 
-// Visualización del total.
+// VisualizaciÃ³n del total.
 factura.muestraTotal = function() {
 	var resultadoFactura = "<table><tr><h3>PEDIDO "
 		+this.cliente.nombre+";"+this.cliente.direccion+"</h3>";
@@ -70,7 +70,7 @@ factura.muestraTotal = function() {
 	document.write(resultadoFactura);
 }
 
-// Mostrar los datos de la factura cuando se haya cargado toda la página.
+// Mostrar los datos de la factura cuando se haya cargado toda la pÃ¡gina.
 window.onload = function() {
 	factura.muestraTotal();
 }
