@@ -1,6 +1,9 @@
-<HTML><HEAD>
-<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-<SCRIPT>
+<!doctype html>
+<html lang="es">
+<head>
+<title>PRUEBA ALGORITMO BUSQUEDA EN JAVASCRIPT.</title>
+<meta charset="UTF-8">
+<script language="javascript">
 	var listaCodigosApp = [2,4,5,8];
 	var LISTA_CODIGO_APP_LENGTH = listaCodigosApp.length;
 
@@ -35,17 +38,16 @@
 		document.getElementById("listaCodigos").innerHTML=labelLista+lista;
 		document.getElementById("botonListar").disabled=true;
 	}
-</SCRIPT>
-</HEAD>
-<BODY>
-<H1>PRUEBA ALGORITMO BUSQUEDA</H1>
+</script>
+</head>
+<body>
+<H2>PRUEBA ALGORITMO BUSQUEDA EN JAVASCRIPT.</h2>
 <P><LABEL id="lblBuscaCodigo">EL CODIGO DE QUE VAS A INTRODUCIR EXISTE?</LABEL></P>
 <P><INPUT id="codigo" TYPE="TEXT" VALUE="" />
 <P><INPUT TYPE="BUTTON" id="botonBuscar" value="Buscar código"ONCLICK="buscarCodigo()" /></P>
 <P><LABEL id="resultado"></LABEL></P>
-<P><LABEL id="lblListaCodigos">LISTA CODIGOS EXISTENTES. </LABEL></P>
+<P><LABEL id="lblListaCodigos">LISTA CODIGOS EXISTENTES: </LABEL></P>
 <P><INPUT TYPE="BUTTON" id="botonListar" value="Listar códigos" ONCLICK="listarCodigos()" /></P>
 <P><DIV id="listaCodigos"></DIV></P>
-</P>
-</BODY>
-</HTML>
+</body>
+</html>
