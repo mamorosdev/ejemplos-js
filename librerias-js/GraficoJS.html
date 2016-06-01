@@ -6,14 +6,26 @@
 <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 <link href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
+	/* La forma que los gráficos salgan uno encima del otro. */
 	div { 
-		float:left;
+		display: inline-block;
+	}
+	.ct-label {
+		font: 0.9rem bold;
 	}
 </style>
 </head>
 <body>
 <h3>EJEMPLO GRAFICOS CHARTIST.JS</h3>
-<p>Encuesta ficticia. ¿Que personaje de juego de tronos prefieres que gobiernbe el Trono de Hierro?</p> 
+<p>Resultados Encuesta ficticia.<br/> 
+¿Que personaje de juego de tronos prefieres que gobiernbe el Trono de Hierro?</p>
+<!-- Dejo como ejercicio pintar esta lista de forma dinámica. -->
+<dl>
+	<dt>Jon</dt><dd>632 votos</dd>
+	<dt>Tyron</dt><dd>420 voots</dd>
+	<dt>Daenerys</dt><dd>943 votos</dd>
+	<dt>Otros</dt><dd>143 votos</dd>
+</dl> 
 <h4>Gráfico circular</h4>
 <div class="ct-pie-chart"></div>
 <p></p>
@@ -40,25 +52,26 @@
 			i--;
 			return characterResults[i];
 		}
-		var viewOptions = {
-		  width: '400px',
-		  height: '300px',
-		};
 		
 		new Chartist.Pie('.ct-pie-chart', dataPie, {
+			width: '460px',
+			height: '300px',
 			labelInterpolationFnc: function(value) {
 				var serie = labelByValue(value);
 				var total = characterResults.reduce(sum);
 				var number = serie / total;
 				return value + ' ' + Math.round(number*10000)/100 + '%';
 			}
-		}, 
-		viewOptions);
+		});
 		
 		// Draw bars diagram.
 		var dataBars = {
 		  labels: characterNames,
 		  series: [characterResults]
+		};
+		var viewOptions = {
+		  width: '460px',
+		  height: '320px',
 		};
 		new Chartist.Bar('.ct-bar-chart', dataBars, viewOptions);
 </script>
