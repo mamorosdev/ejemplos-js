@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title>EJEMPLO GRAFICOS CHARTIST.JS</title>
+<meta charset="UTF-8">
+<script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<link href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	div { 
+		float:left;
+	}
+</style>
+</head>
+<body>
+<h3>EJEMPLO GRAFICOS CHARTIST.JS</h3>
+<p>Encuesta ficticia. ¿Que personaje de juego de tronos prefieres que gobiernbe el Trono de Hierro?</p> 
+<h4>Gráfico circular</h4>
+<div class="ct-pie-chart"></div>
+<p></p>
+<h4>Gráfico barras</h4>
+<div class="ct-bar-chart"></div>
+<script type="text/javascript">
+		// Tha character names and results will be the same at all graphs.
+		var characterNames = ['Daenerys', 'Jon', 'Tyron', 'Otros'];
+		var characterResults = [943, 632, 420, 143];
+		
+		// Draw pie diagram.
+		var dataPie = {
+		  labels: characterNames,
+		  series: characterResults
+		};
+		
+		var sum = function(a, b) { return a + b };
+		function labelByValue(value) {
+			var found = false;
+			var i=0;
+			for(i=0; !found; i++) {
+				found = characterNames[i] == value;
+			}
+			i--;
+			return characterResults[i];
+		}
+		var viewOptions = {
+		  width: '400px',
+		  height: '300px',
+		};
+		
+		new Chartist.Pie('.ct-pie-chart', dataPie, {
+			labelInterpolationFnc: function(value) {
+				var serie = labelByValue(value);
+				var total = characterResults.reduce(sum);
+				var number = serie / total;
+				return value + ' ' + Math.round(number*10000)/100 + '%';
+			}
+		}, 
+		viewOptions);
+		
+		// Draw bars diagram.
+		var dataBars = {
+		  labels: characterNames,
+		  series: [characterResults]
+		};
+		new Chartist.Bar('.ct-bar-chart', dataBars, viewOptions);
+</script>
+</body>
+</html>
