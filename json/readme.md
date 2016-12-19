@@ -4,16 +4,15 @@ Ejemplos de código que sirven para mostrar las posibilidades del formato JSON -
 
 Las 2 operaciones más importantes que proporciona Javascript de forma nativa para convertir texto a objetos JSON son:
 
-##### JSON.parse
+### JSON.parse
 Converte una cadena texto en formato JSON en un objeto JSON.
 
-Se puede probar esta operación online desde esta página:
-http://jsonlint.com/
-Incluso hay editores JSON online como este:
+### JSON.stringfy
+Hace lo contrario que el parse; transforma un objeto JSON a una cadena de texto.
+
+Se pueden probar estas operaciones online desde esta página:
 http://www.jsoneditoronline.org/
 
-##### JSON.stringfy
-Hace lo contrario que el parse; transforma un objeto JSON a una cadena de texto.
 
 ### mostrarJSON.html
 Este es un ejemplo básico que muestra por HTML partes de un fichero JSON con datos de una fruteria.
