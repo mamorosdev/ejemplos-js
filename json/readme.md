@@ -1,4 +1,4 @@
-#EJEMPLOS JAVASCRIPT Y JSON.
+# EJEMPLOS JAVASCRIPT Y JSON.
 
 Ejemplos de código que sirven para mostrar las posibilidades del formato JSON - JavaScript Object Notation; un formato de texto ligero para la transferencia de datos. 
 
@@ -15,16 +15,14 @@ http://www.jsoneditoronline.org/
 
 
 ### mostrarJSON.html
-Este es un ejemplo básico que muestra por HTML partes de un fichero JSON con datos de una fruteria.
-Para ello uso el método nativo JSON.stringify.
 
-### TablaFacturaJSON.html
-Este ejemplo muestra por pantalla una tabla con una factura obtenida a través de un objeto.
-A pesar de que la forma de pintar la tabla es bastante obsoleta; me ha parecido bastante interesante incluir 
-este ejemplo, con una estructura de datos más compleja.
+Muestra por HTML partes de un fichero JSON con datos de una GreenShop (frutería/verdulería).
+Probamos la potencia de los métodos JSON.parse y JSON.stringify; así como el manejo de arrays. 
 
 ### parseAlumnosJSON.html 
+
 Este programa permite convertir una lista de alumnos introducidos por texto a formato JSON.
+Funciona correctamente pero no usa las funciones nativas de JSON.
 
 Formato entrada:
 Laura, 7.5, 6, 8
