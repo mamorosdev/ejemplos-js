@@ -23,7 +23,7 @@
 	 ]
 	};
 
-	function cargarFruteria(){
+	function cargarGreenShop(){
 
 		var frutas = JSON.stringify(fruteriaJSON["Fruteria"][0]["Fruta"]);
 		document.getElementById('frutas').innerHTML=frutas;
@@ -33,15 +33,23 @@
 		
 		var verduras = JSON.stringify(fruteriaJSON["Fruteria"][1]["Verdura"]);
 		document.getElementById('verduras').innerHTML=verduras;
+
+		var patatas = JSON.parse('{"Nombre":"Patata","Cantidad":320}');
+		document.getElementById('patatas').innerHTML=JSON.stringify(patatas);
+
+		fruteriaJSON["Fruteria"][1]["Verdura"][2]=patatas;
+
+		document.getElementById('fullJSON').innerHTML=JSON.stringify(fruteriaJSON);
 	}
 </script>
 
 </head>
-<body onload="cargarFruteria()">
-    <h2>Mostrar inventario fruteria en Javascript, en formato JSON</h2>
-	<p>Frutas:<div id="frutas"></div></p>
-	<p>Manzanas:<div id="manzanas"></div></p>
-	<p>Verduras:<div id="verduras"></div></p>
-	<p>Verduras:<div id="verduras"></div></p>
+<body onload="cargarGreenShop()">
+    <h2>Mostrar inventario Green Shop en Javascript, en formato JSON.</h2>
+	<p>Todas las frutas:<div id="frutas"></div></p>
+	<p>Sólo las manzanas:<div id="manzanas"></div></p>
+	<p>Todas las verduras:<div id="verduras"></div></p>
+	<p>Agregamos (parseamos) nueva verdura :<div id="patatas"></div></p>
+	<p>JSON original; inventario Green Shop.<div id="fullJSON"></div> </p>
 </body>
 </html>
