@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ejemplo programación funcional en JS. Map, filter y reduce. </title>
+<script type='text/javascript'>
+
+	// Ejemplos obtenidos en:
+	// http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/
+	function cargarEjemplos(){
+
+		// 1 - MAP. Incrementar un 10% todos los numeros.
+		var numbers = [23.4, 16.25, 33.0, 28.13, 42.35, 19.6];
+		/* Old style solution 
+		var newNumbers = [];
+		for(var i = 0; i < numbers.length; i++) {
+    		newNumbers[i] = numbers[i] * 1.1;
+		} 
+		*/
+		var mapNumbers = numbers.map(function(number){
+		    return Math.round(number * 110) / 100;
+		});
+		var result = "Los nuevos valores, incrementados un 10%: " + mapNumbers;
+		// console.log(result);
+		document.getElementById('numbers').innerHTML=numbers;
+		document.getElementById('mapNumbers').innerHTML=mapNumbers;
+
+		// 2 - FILTER. Seleccionar números mayores a 25.
+		/* Old style solution 
+		var newNumbers = [];
+		for(var i = 0; i < numbers.length; i++) {
+    		if(numbers[i] > 25 !== 0) {
+        		newNumbers[i] = numbers[i];
+    		}
+		}
+		*/
+		var filterNumbers = numbers.filter(function(number){
+    		return (number > 25);
+		});
+		document.getElementById('filterNumbers').innerHTML=filterNumbers;
+
+		// 3 - FILTER+MAP. Incrementar un 30% los números mayores a 25.
+		var filterMapNumbers = numbers.filter(function(number){
+    		return (number > 25);
+		}).map(function(number){
+    		return Math.round(number * 130) / 100;
+		});
+		document.getElementById('filterMapNumbers').innerHTML=filterMapNumbers;
+
+		// 4 - REDUCE. Calcularem sumatori, mitjana i màxim.
+		/* Old style solution
+		var total = 0;
+ 		for (let i = 0; i < numbers.length; i++) {
+    		total += numbers[i]
+		} */
+		var reduceSumNumbers=numbers.reduce(function(resultado,numero){
+ 			return resultado+numero;
+ 		}); 
+		document.getElementById('reduceSumNumbers').innerHTML=reduceSumNumbers;
+		document.getElementById('reduceAvgNumbers').innerHTML=Math.round((reduceSumNumbers/numbers.length)*100)/100;
+		var reduceMaxNumber=numbers.reduce(function(maximo,numero){
+			return (maximo>numero)? maximo:numero;
+		});
+		document.getElementById('reduceMaxNumber').innerHTML=reduceMaxNumber;
+
+	}
+</script>
+
+</head>
+<body onload="cargarEjemplos()">
+    <h2>Ejemplos programación funcional en JS. Map, filter y reduce.</h2>
+    <p>Orig. numbers <span id="numbers"></span></p>
+	<h3>MAP.</h3>
+	<p>Útil para transformar todos los elementos de una colección.</p>
+	<p>Incrementar un 10% todos los numeros. <div id="mapNumbers"></div></p>
+	<h3>FILTER.</h3>
+	<p>Útil para seleccionar los elementos de una colección por criterios.</p>
+	<p>Seleccionar números mayores a 25. <div id="filterNumbers"></div></p>
+	<h3>FILTER+MAP</h3>
+	<p>Transformar (map) los elementos de una colección que seleccionamos por criterios(filter).</p>
+	<p>Incrementar un 30% los números mayores a 25. <div id="filterMapNumbers"></div></p>
+	<h3>REDUCE</h3>
+	<p>Reducir la colecció mientras se realiza el càlculo hasta conseguir el resultado final en un solo valor. Con ejemplos se entiende mejor.</p>
+	<p>Sumatorio <span id="reduceSumNumbers"></span></p>
+	<p>Media <span id="reduceAvgNumbers"></span></p>
+	<p>Màximo <span id="reduceMaxNumber"></span></p>
+	</body>
+</html>
