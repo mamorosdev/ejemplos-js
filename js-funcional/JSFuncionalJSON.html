@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Programación funcional en JS. Tratamiento JSON óptimo. </title>
+<script type='text/javascript'>
+
+	var greenStaffJSON = [
+	  	{"Nombre":"Sandra","Edad":43,"Departamento":"A","SueldoMes":3000},
+		{"Nombre":"Paula","Edad":30,"Departamento":"I","SueldoMes":2400},
+		{"Nombre":"Inma","Edad":33,"Departamento":"V","SueldoMes":2800},
+		{"Nombre":"Carles","Edad":26,"Departamento":"I","SueldoMes":2000},
+		{"Nombre":"Manel","Edad":51,"Departamento":"V","SueldoMes":3000},
+		{"Nombre":"Nuria","Edad":41,"Departamento":"I","SueldoMes":3000},
+	    {"Nombre":"Pau","Edad":27,"Departamento":"V","SueldoMes":2000},
+		{"Nombre":"Joan","Edad":38,"Departamento":"A","SueldoMes":1800},
+		{"Nombre":"Tere","Edad":30,"Departamento":"A","SueldoMes":2700},
+		{"Nombre":"Toni","Edad":45,"Departamento":"V","SueldoMes":2100},
+		{"Nombre":"Olga","Edad":22,"Departamento":"I","SueldoMes":1900}
+	 ];
+
+	function cargarGreenShop(){
+		// Formato original: JSON.
+		document.getElementById('greenStaffJSON').innerHTML=JSON.stringify(greenStaffJSON);
+
+		// Transformar JSON en HTML list con funcion map o forEach.	
+
+		/* var greenStaffListHTML = greenStaffJSON.map(function(empl){
+		  return '<li>'+empl.Nombre+' '+empl.Departamento+' '+empl.Edad+'</li>';
+		}); 
+		document.getElementById("greenStaffHTML").innerHTML = greenStaffListHTML.toString().replace(/,/g,'');
+		document.getElementById("greenStaffHTML").innerHTML = greenStaffListHTML;
+		*/
+		var greenStaffHTML = document.getElementById('greenStaffHTML');
+		greenStaffJSON.forEach( function( empl ) {
+    		var item = document.createElement('li');
+    		item.appendChild(document.createTextNode(empl.Nombre+' '+empl.Departamento+' '+empl.Edad));
+    		greenStaffHTML.appendChild(item);
+    	});
+
+		// Caso 1 - Filtrar nombres empleados por departamento I
+		var depIStaff = greenStaffJSON.filter(function(empl){
+    		return (empl.Departamento == 'I');
+		}).map(function(empl){
+			return empl.Nombre;
+		});
+		document.getElementById('depIStaff').innerHTML=JSON.stringify(depIStaff);
+
+		// Caso 2 - Filter nombre y sueldo menores de 35
+		var men35Staff = greenStaffJSON.filter(function(empl){
+    		return (empl.Edad <= 35);
+		}).map(function(empl){
+			return empl.Nombre + ' ' + empl.SueldoMes;
+		});
+		document.getElementById('men35Staff').innerHTML=JSON.stringify(men35Staff);
+
+		// Caso 3 - Consulta número de empleados dde cada departamento.
+		/* 
+			Solucion sin Prog.Func.
+			count = {};
+			for(a in array){
+			  if(count[array[a]])count[array[a]]++;
+			  else count[array[a]]=1;
+			}
+		*/
+		var numStaffForDep = greenStaffJSON.reduce(function(staff,empl) {
+    		 if ( empl.Departamento in staff ) staff[empl.Departamento]++; 
+			 else staff[empl.Departamento] = 1; 
+			 return staff; 
+    	}, {} );
+		document.getElementById('numStaffForDep').innerHTML=JSON.stringify(numStaffForDep);
+
+		// Caso 4 - Calcula media edad
+ 		var sumAgeStaff = greenStaffJSON.reduce(function(sum,empl){
+ 			return sum + empl.Edad;
+ 		}, 0); 
+		document.getElementById('avgAgeStaff').innerHTML = Math.round((sumAgeStaff/greenStaffJSON.length)*100)/100;
+
+ 		// Caso 5 - Aumentar 300 euros de sueldo a los menores de 35.
+		var staffUpSalaries = greenStaffJSON.filter(function(empl){
+    		return (empl.Edad <= 35);
+		}).map(function(empl){
+			empl.SueldoMes += 300;
+			return empl;
+		});
+		document.getElementById('staffUpSalaries').innerHTML=JSON.stringify(staffUpSalaries);
+
+		// Caso 6 - Brecha salarial absoluta (maximo - minimo)
+		
+		// Caso 7 - Suma de salarios y media de edad de cada departamento
+
+		// Caso 8 - Ordenar por edad y nombre.
+	}
+</script>
+
+</head>
+<body onload="cargarGreenShop()">
+    <h2>Programación funcional en JS. Tratamiento JSON óptimo.</h2>
+    <h3>Mostrar empleados Green Shop en Javascript, en formato JSON.</h3>
+	<p><div id="greenStaffJSON"></div></p>
+	<h3>Mostrar empleados Green Shop en Javascript, en formato lista HTML.</h3>
+	<p><ul id="greenStaffHTML"></ul></p>
+	<h3>Caso 1 - Filtrar por departamento I.</h3>
+	<p><div id="depIStaff"></div></p>
+	<h3>Caso 2 - Filter nombre y sueldo menores de 35.</h3>
+	<p><div id="men35Staff"></div></p>
+	<h3>Caso 3 - Consulta número de empleados de cada departamento.</h3>
+	<p><div id="numStaffForDep"></div></p>
+	<h3>Caso 4 - Calcula media edad toda la plantilla.</h3>
+	<p><div id="avgAgeStaff"></div></p>
+	<h3>Caso 5 - Aumentar 300 euros de sueldo a los menores de 35.</h3>
+	<p><div id="staffUpSalaries"></div></p>
+</body>
+</html>
