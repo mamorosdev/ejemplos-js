@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ejemplo validación de formularios con Java Script. </title>
+<style>
+    ul{
+        list-style:none;
+    }
+    label{
+        width:180px;
+        display:block;
+        float:left;
+    }
+    #resultados {
+    	color:red;
+    }
+</style>
+<script type='text/javascript' src="dateUtils.js"></script>
+<script type='text/javascript'>
+	function validar() {
+		var fechaInc = document.getElementById('fechaInc').value;
+		var fechaFin = document.getElementById('fechaFin').value;
+		document.getElementById('resultados').innerHTML=compruebaFechas(fechaInc,fechaFin,60);
+		return false;
+	}
+</script>
+</head>
+<body>
+    <h2>Validar intervalo de fechas con Javascript</h2>
+	<div id="resultados"></div>
+	<form name="form1" onsubmit='return validar();'>
+		<ul>
+			<li>	
+				<label>	Fecha inicio.</label>
+				<input type='date' value='' placeholder='01/01/2015' id='fechaInc' name='fechaInc' />
+			</li>
+			<li>	
+				<label>	Fecha fin.</label>
+				<input type='date' value='' placeholder='01/01/2017' id='fechaFin' name='fechaFin' />
+			</li>
+			<li><button>Calcular</button></li>
+		</ul>
+	</form>
+</body>
+</html>
