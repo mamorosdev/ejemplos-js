@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ejemplos de validación de fechas con Javascript</title>
+<style>
+    ul{
+        list-style:none;
+    }
+    label{
+        width:400px;
+        display:block;
+        float:left;
+    }
+	div {
+		margin-bottom:6px;
+	}
+	#errores{
+		color:red;
+		font-size:0.8em;
+	}
+</style>
+<script type='text/javascript'>
+
+
+	function calcularAntig() {
+		var fechaHoy = new Date();
+		var fechaIncTxt = document.getElementById('fechaInc').value;
+		var dateSplitted = fechaIncTxt.split('/');
+		var fechaInc = new Date(dateSplitted[2],(dateSplitted[1]-1),dateSplitted[0]);
+		var diff = fechaFin - fechaInicio;
+		// En años, meses i dias
+		var result = diff/(1000*60*60*24*31) + ' meses, ' + diff/(1000*60*60*24) + ' días.';
+		document.getElementById('resultados').innerHTML=result;
+		console.log(diff/(1000*60*60*24) );
+		return false;
+	}
+
+	function validar(){
+
+		var errores = [];
+
+		// Obtener fecha de hoy 
+		var d=new Date();
+		var diaHoy=d.getDate();
+		if (diaHoy<10) diaHoy='0'+diaHoy;
+		var mesHoy=d.getMonth()+1;
+		if (mesHoy<10) mesHoy='0'+mesHoy;
+		var anioHoy=d.getFullYear();
+		var fechaHoy=diaHoy+'/'+mesHoy+'/'+anioHoy; 
+		let TODAY = d.getDate();
+
+		var fechaInc = document.getElementById('fechaInc').value;
+		var fechaNac = document.getElementById('fechaNac').value;
+		var sExpresion = /^([0][1-9]|[12][0-9]|3[01])(\/|-)([0][1-9]|[1][0-2])\2(\d{4})$/;
+
+		if(!fechaInc.match(sExpresion)) {
+			errores.push("Formato fecha incorporación incorrecto");
+		} else {
+			// Verificar fecha inc. anterior al dia de hoy.
+			var fechaSplitted = fechaInc.split('/');
+			var dateInc=new Date(fechaSplitted[2],(fechaSplitted[1]-1),fechaSplitted[0]);
+			if(dateInc>=d){
+				errores.push("Fecha incorporación debe ser anterior al dia de hoy:"+fechaHoy);
+			}
+		}
+
+		if(!fechaNac.match(sExpresion)) {
+			errores.push("Formato fecha nacimiento incorrecto");
+		} else {
+			// Verificar edad.
+			var fechaSplitted = fechaNac.split('/');
+			var anioNac = fechaSplitted[2]
+			var mesNac = fechaSplitted[1]-1
+			var diaNac = fechaSplitted[0];
+
+			var edad = 0;
+			edad = (anioHoy + 1900) - anioNac;
+			if ( mesHoy < (mesNac - 1)){
+			   edad--;
+			}
+			if (((mesNac - 1) == mesHoy) && (diaHoy < diaNac)){ 
+			   edad--;
+			}
+			if (edad > 1900){
+			    edad -= 1900;
+			}
+			
+			if(edad<18||edad>64){
+				errores.push("La fecha nacimiento debe ser superior a 17 e inferior a 65.");
+			}
+		}
+
+		// alert(errores.toString());
+		// Finalmente, mostrar por pantalla si todo ha ido bien, o si hay campos mal informados y cuales son.
+		var listaErrores = document.getElementById('errores');
+		listaErrores.innerHTML="";
+		if(errores.length>0){
+			errores.forEach( function( err ) {
+	    		var item = document.createElement('li');
+	    		item.appendChild(document.createTextNode(err));
+	    		listaErrores.appendChild(item);
+    		});
+    		document.getElementById('resultados').innerHTML='Ha habido los siguientes errores al registrar las fechas:';
+		} else {
+			document.getElementById('resultados').innerHTML='Fechas registradas correctamente.';
+		}
+		return false;
+	}
+</script>
+
+</head>
+    <body>
+    <h2>Ejemplos de validación de fechas con Javascript</h2>
+	<div id="resultados"></div>
+	<ul id="errores"></ul>
+	<form name="form1" onsubmit='return validar();'>
+			<li>	
+				<label>	Fecha nacimiento. Debe ser superior a 17 e inferior a 65.</label>
+				<input type='text' value='' placeholder='01/01/1999' id='fechaNac' name='fechaNac' />
+			</li>
+			<li>	
+				<label>	Fecha incorporación. Debe ser anterior al dia de hoy </label>
+				<input type='text' value='' placeholder='01/01/2017' id='fechaInc' name='fechaInc' />
+			</li>
+			<li>	
+				<label>	Calcular tiempo desde incorporación </label>
+				<button onclick='return calcularAntig();'>Calcular tiempo</button></div></li>
+			</li>
+			<li><div><button>Validar fechas</button></div></li>
+		</ul>
+	</form>
+</body>
+</html>
