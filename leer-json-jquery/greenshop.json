@@ -1,0 +1,13 @@
+[
+{"Nombre":"Sandra","Edad":43,"Departamento":"A","SueldoMes":3000},
+{"Nombre":"Paula","Edad":30,"Departamento":"I","SueldoMes":2400},
+{"Nombre":"Inma","Edad":33,"Departamento":"V","SueldoMes":2800},
+{"Nombre":"Carles","Edad":26,"Departamento":"I","SueldoMes":2000},
+{"Nombre":"Manel","Edad":51,"Departamento":"V","SueldoMes":3000},
+{"Nombre":"Nuria","Edad":41,"Departamento":"I","SueldoMes":3000},
+{"Nombre":"Pau","Edad":27,"Departamento":"V","SueldoMes":2000},
+{"Nombre":"Joan","Edad":38,"Departamento":"A","SueldoMes":1800},
+{"Nombre":"Tere","Edad":30,"Departamento":"A","SueldoMes":2700},
+{"Nombre":"Toni","Edad":45,"Departamento":"V","SueldoMes":2100},
+{"Nombre":"Olga","Edad":22,"Departamento":"I","SueldoMes":1900}
+]
