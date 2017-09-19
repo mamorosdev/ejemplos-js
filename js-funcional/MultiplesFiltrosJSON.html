@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Programación funcional en JS. Tratamiento JSON óptimo. </title>
+<script type='text/javascript'>
+
+	var greenStaffJSON = [
+	  	{"Nombre":"Sandra","Edad":43,"Departamento":"A","Sueldo":3000},
+		{"Nombre":"Paula","Edad":30,"Departamento":"I","Sueldo":2400},
+		{"Nombre":"Inma","Edad":33,"Departamento":"V","Sueldo":2800},
+		{"Nombre":"Carles","Edad":26,"Departamento":"I","Sueldo":2000},
+		{"Nombre":"Manel","Edad":51,"Departamento":"V","Sueldo":3000},
+		{"Nombre":"Nuria","Edad":41,"Departamento":"I","Sueldo":3200},
+	    {"Nombre":"Pau","Edad":27,"Departamento":"V","Sueldo":2000},
+		{"Nombre":"Joan","Edad":38,"Departamento":"A","Sueldo":1700},
+		{"Nombre":"Lidia","Edad":19,"Departamento":"I","Sueldo":1800},
+		{"Nombre":"David","Edad":26,"Departamento":"V","Sueldo":2100},
+		{"Nombre":"Tere","Edad":30,"Departamento":"A","Sueldo":2700},
+		{"Nombre":"Toni","Edad":45,"Departamento":"V","Sueldo":2100},
+		{"Nombre":"Olga","Edad":22,"Departamento":"I","Sueldo":1900},
+		{"Nombre":"Ruben","Edad":31,"Departamento":"I","Sueldo":2300},
+		{"Nombre":"Ana","Edad":36,"Departamento":"A","Sueldo":2400},
+		{"Nombre":"Eli","Edad":28,"Departamento":"V","Sueldo":2700},
+		{"Nombre":"Rosa","Edad":54,"Departamento":"V","Sueldo":3500},
+	 ];
+
+	 /* Las funciones de filtro son un poco mierda */
+	function leerFiltro(selectId,empl,esFiltroNum) {
+		var idFil = document.getElementById(selectId).selectedIndex; 
+		var vaFil = document.getElementById(selectId).options[idFil].value;
+		// Solo se aplica filtro si se ha seleccionado algun valor al select.
+		if(vaFil!=='nof') {
+			// He definido el valor del select con el formato string:
+			// <tipoFiltro>-<valorFiltro1>-<valorFiltro2>
+			// pej Edad-18-30
+			var cadenaFiltro=vaFil.split('-');
+			var tipoFiltro = cadenaFiltro[0];
+			var valorFiltro1 = cadenaFiltro[1];
+			var valorFiltro2 = cadenaFiltro[2];
+			/* console.log(empl.Sueldo + " tipoFiltro " + tipoFiltro);
+			console.log(parseInt(empl[tipoFiltro])>valorFiltro1 && parseInt(empl[tipoFiltro])<valorFiltro2); */
+			// Si es filtro de intervalo se pone así.
+			if(esFiltroNum) {
+				return parseInt(empl[tipoFiltro])>parseInt(valorFiltro1) 
+					&& parseInt(empl[tipoFiltro])<parseInt(valorFiltro2);
+			// Si es filtro de selección de valors dept=A i dept=V es así.
+			} else {
+				console.log(tipoFiltro);
+				return empl[tipoFiltro]==valorFiltro1 || empl[tipoFiltro]==valorFiltro2;
+			}
+		} else {
+			return true;
+		}
+	}
+	function leerFiltros(empl) {
+		var filtroFinal = leerFiltro('filtroEdad',empl,true) 
+			&& leerFiltro('filtroSueldo',empl,true)
+			&& leerFiltro('filtroDepartamento',empl,false)
+		console.log("filtroFinal="+filtroFinal);
+		return filtroFinal;
+	}
+
+	function cargarGreenShop(){
+		// Formato original: JSON.
+		document.getElementById('greenStaffJSON').innerHTML=JSON.stringify(greenStaffJSON);
+	}
+
+	function filtrarGreenShop(){
+		console.log("filtrarGreenShop");
+		var filteredStaff = greenStaffJSON.filter(function(empl){
+    		return leerFiltros(empl);
+		}).map(function(empl){
+			return empl.Nombre;
+		});
+		console.log(filteredStaff);
+		document.getElementById('filteredStaff').innerHTML=JSON.stringify(filteredStaff);
+	}
+</script>
+
+</head>
+<body onload="cargarGreenShop()">
+    <h2>Programación funcional en JS. Multiples filtros en JSON.</h2>
+    <p><ul id="greenStaffJSON"></ul></p>
+	<p><label for='filtroEdad'>Filtro por edad</label>
+	<select id='filtroEdad' name='filtroEdad'> 
+		<option value="nof" selected>Selecciona un valor
+		<option value="Edad-18-30">18-30
+		<option value="Edad-30-40">30-40 
+		<option value="Edad-40-50">40-50
+		<option value="Edad-50-60">50-60
+	</select></p>
+	<p><label for='filtroDepartamento'>Filtro por departamento</label>
+	<select id='filtroDepartamento' name='filtroDepartamento'> 
+		<option value="nof" selected>Selecciona un valor
+		<option value="Departamento-A-A">A
+		<option value="Departamento-I-I">I 
+		<option value="Departamento-V-V">V
+		<option value="Departamento-A-V">A y V
+	</select></p>
+	<p><label for='filtroSueldo'>Filtro por sueldo</label>
+	<select id='filtroSueldo' name='filtroSueldo'> 
+		<option value="nof" selected>Selecciona un valor
+		<option value="Sueldo-0-2000">Menor a 2000
+		<option value="Sueldo-2000-2500">2000-2500
+		<option value="Sueldo-2500-3000">2500-3000
+		<option value="Sueldo-3000-5000">Mayor a 3000
+	</select></p>
+	<input type='button' onclick='filtrarGreenShop()' value='Filtrar' />
+	<h3>Mostrar empleados filtrados.</h3>
+	<p><ul id="filteredStaff"></ul></p>
+</body>
+</html>

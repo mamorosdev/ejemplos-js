@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Programación funcional en JS. Tratamiento JSON óptimo. </title>
+<script type='text/javascript'>
+
+	var greenStaffJSON = [
+	  	{"Nombre":"Sandra","Edad":43,"Departamento":"A","SueldoMes":3000},
+		{"Nombre":"Paula","Edad":30,"Departamento":"I","SueldoMes":2400},
+		{"Nombre":"Inma","Edad":33,"Departamento":"V","SueldoMes":2800},
+		{"Nombre":"Carles","Edad":26,"Departamento":"I","SueldoMes":2000},
+		{"Nombre":"Manel","Edad":51,"Departamento":"V","SueldoMes":3000},
+		{"Nombre":"Nuria","Edad":41,"Departamento":"I","SueldoMes":3300},
+	    {"Nombre":"Pau","Edad":27,"Departamento":"V","SueldoMes":2000},
+		{"Nombre":"Joan","Edad":38,"Departamento":"A","SueldoMes":1800},
+		{"Nombre":"Tere","Edad":30,"Departamento":"A","SueldoMes":2700},
+		{"Nombre":"Oriol","Edad":45,"Departamento":"V","SueldoMes":2100},
+		{"Nombre":"Olga","Edad":22,"Departamento":"I","SueldoMes":1900},
+		{"Nombre":"Vane","Edad":35,"Departamento":"V","SueldoMes":2300},
+		{"Nombre":"Eli","Edad":46,"Departamento":"A","SueldoMes":2700},
+	 ];
+
+	var filterDptoI = function(elem){
+		return (elem.Departamento == 'I');
+	}
+	var filterMayor2500 = function(elem){
+		return (elem.SueldoMes >= 2500);
+	}
+	var filterEdadMayor35 = function(elem){
+		return (elem.Edad >= 35);
+	}
+	var filterDptos = function(dpto,elem){
+		return (elem.Departamento === dpto);
+	}
+	var filterIntervaloEdad = function(minE,maxE,elem){
+		console.log(elem.Edad >= minE && elem.Edad <= maxE);
+		return (elem.Edad >= minE && elem.Edad <= maxE);
+	}
+
+	function cargarGreenShop(){
+		document.getElementById('greenStaffJSON').innerHTML=JSON.stringify(greenStaffJSON);
+
+		// Caso 1 - Filtrar nombres empleados por departamento I sueldo +2500
+		
+		var filters=[filterDptoI,filterMayor2500,filterEdadMayor35];
+		console.log(filters.length);
+		var filteredGreenStaff=greenStaffJSON;
+		for (var i = 0, len = filters.length; i < len; i++) {
+			filteredGreenStaff=filteredGreenStaff.filter(filters[i]);
+			console.log(filteredGreenStaff.length);
+		}
+		document.getElementById('filtroMultiplo1').innerHTML=JSON.stringify(filteredGreenStaff);
+
+		// var filterDptoA = filterDptos('A');
+		// var filterIntervaloEdad3048 = filterIntervaloEdad(30,48);
+		var filteredGreenStaff=greenStaffJSON;
+		console.log(greenStaffJSON.length);
+		filteredGreenStaff=filteredGreenStaff.filter(filterDptos.bind(this,'A'));
+		filteredGreenStaff=filteredGreenStaff.filter(filterIntervaloEdad.bind(this,20,40));
+
+		document.getElementById('filtroMultiplo2').innerHTML=JSON.stringify(filteredGreenStaff);
+	}
+</script>
+</head>
+<body onload="cargarGreenShop()">
+	<h3>Filtro multiple.</h3>
+	<h4>Mostrar empleados Green Shop en Javascript, en formato JSON.</h4>
+	<p><div id="greenStaffJSON"></div></p>
+	<h4>Filtro multiple aplicado 1.</h4>
+	<p><div id="filtroMultiplo1"></div></p>
+	<h4>Filtro multiple aplicado 2.</h4>
+	<p><div id="filtroMultiplo2"></div></p>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Filtrar empleados Green Shop en JQuery, en formato JSON.</title>
+<script
+	src="https://code.jquery.com/jquery-2.2.4.min.js"
+	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+	crossorigin="anonymous">
+</script>
+<style type="text/css">
+#listado{
+	padding:0px;
+	margin:0px;
+}
+#listado li{
+	width:100px;
+	display: inline-block;
+	border:3px solid #000000;
+	margin-left: 6px;
+	margin-top: 6px;
+}
+#listado{
+	width:500px;
+}
+.V{background-color: LawnGreen;}
+.I{background-color: MediumPurple;}
+.A{background-color: yellow;}
+</style>
+		
+<script type="text/javascript">
+	var greenStaffJSON = [
+	  	{"Nombre":"Sandra","Edad":43,"Departamento":"A","SueldoMes":3000},
+		{"Nombre":"Paula","Edad":30,"Departamento":"I","SueldoMes":2400},
+		{"Nombre":"Inma","Edad":33,"Departamento":"V","SueldoMes":2800},
+		{"Nombre":"Carles","Edad":26,"Departamento":"I","SueldoMes":2000},
+		{"Nombre":"Manel","Edad":51,"Departamento":"V","SueldoMes":3000},
+		{"Nombre":"Nuria","Edad":41,"Departamento":"I","SueldoMes":3000},
+	    {"Nombre":"Pau","Edad":27,"Departamento":"V","SueldoMes":2000},
+		{"Nombre":"Joan","Edad":38,"Departamento":"A","SueldoMes":1800},
+		{"Nombre":"Tere","Edad":30,"Departamento":"A","SueldoMes":2700},
+		{"Nombre":"Toni","Edad":45,"Departamento":"V","SueldoMes":2100},
+		{"Nombre":"Olga","Edad":22,"Departamento":"I","SueldoMes":1900}
+	];
+
+	$(document).ready(function(){
+
+		var greenStaffHTML = $('#greenStaffHTML');
+		greenStaffJSON.forEach( function( empl ) {
+			$('#greenStaffHTML').append(rowTemplate(empl));
+    	});
+		//comenzamos aplicandole un evento click a las etiquetas de tipo ancla
+		//que se encuentran en la lista (todos, rojos, azules, amarillo)
+		$('#listado li a').click(function() {
+			
+			// var textoFiltro = $(this).text().toLowerCase().replace(/\s/g,"-");
+			var filtro = $(this).html().substr(0,1);
+			$('#greenStaffHTML').empty();
+			$('#greenStaffHTML').append(rowHeader);
+
+			if(filtro === 'T') {	
+				greenStaffJSON.forEach( function( empl ) {
+					$('#greenStaffHTML').append(rowTemplate(empl));
+    			});
+			} else {
+				// aqui empieza la magia
+				var depStaff = greenStaffJSON.filter(function(empl){
+			    	return (empl.Departamento == filtro);
+				}).map(function(empl){
+					return rowTemplate(empl);
+				});
+				$('#greenStaffHTML').append(depStaff);
+			}
+			
+			return false;
+		});
+
+		function rowTemplate(empl) {
+			return '<tr class='+empl.Departamento+'><td>'
+				+empl.Nombre+'</td><td>'
+				+empl.Departamento+'</td><td>'
+				+empl.Edad+'</td><td>'
+				+empl.SueldoMes+'</td></tr>';
+		}
+
+		function rowHeader() {
+			return '<th>Nombre</th><th>Depto</th><th>Edad</th><th>Salario</th>';
+		}
+	});
+</script>
+
+</head>
+
+<body>
+	<section>
+		<h3>Filtrar empleados Green Shop en JQuery, en formato JSON.</h3>
+		Filtro por departamento:
+		<ul id="listado">
+			<li><a href="#">Todos</a></li>
+			<li class='I'><a href="#">Informatica</a></li>
+			<li class='A'><a href="#">Administracion</a></li>
+			<li class='V'><a href="#">Ventas</a></li>
+		</ul>
+		<table id="greenStaffHTML">
+			<theader><th>Nombre</th><th>Depto</th><th>Edad</th><th>Salario</th></theader>
+		</table>
+	</section>
+</body></html>
