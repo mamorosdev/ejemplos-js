@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Filtrar empleados Green Shop en JQuery, en formato JSON.</title>
+<script
+	src="https://code.jquery.com/jquery-2.2.4.min.js"
+	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+	crossorigin="anonymous">
+</script>
+<style type="text/css">
+#menu{
+	padding:0px;
+	margin:0px;
+	width:600px;
+}
+#menu a{
+	width:100px;
+	display: inline-block;
+	border:3px solid #000000;
+	padding-left: 6px;
+	margin-top: 6px;
+}
+</style>
+		
+<script type="text/javascript">
+	// Solución
+	// https://stackoverflow.com/questions/6967081/show-hide-multiple-divs-with-jquery
+	$(document).ready(function(){
+
+		$('#showAll').click(function(){
+            $('.targetDiv').show();
+        });
+        $('.showSingle').click(function(){
+            $('.targetDiv').hide();
+            $('#div'+$(this).attr('target')).show();
+        });
+
+	});
+</script>
+
+</head>
+
+<body>
+	<header>
+		<h2>SPA en JQuery</h2>
+	</header>
+	<nav id='menu'>
+		<a id="showAll">Todos</a>
+		<a class='showSingle' target="1">Informatica</a>
+		<a class='showSingle' target="2">Administracion</a>
+		<a class='showSingle' target="3">Ventas</a>
+		<a class='showSingle' target="4">RRHH</a>
+	</nav>
+	<section>
+		<div id="div1" class="targetDiv">
+			<p>Menu Informatica</p>
+		</div>
+		<div id="div2" class="targetDiv">
+			<p>Menu Administracion</p>
+		</div>
+		<div id="div3" class="targetDiv">
+			<p>Menu Ventas</p>
+		</div>
+		<div id="div4" class="targetDiv">
+			<p>Menu RRHHH</p>
+		</div>
+	</section>
+</body></html>
