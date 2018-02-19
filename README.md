@@ -18,9 +18,9 @@ Repositorio con varios ejemplos de JavaScript que he usado para aprender:
 * [Github de recopilación recursos Javascript](https://github.com/sergiodxa/impresionante-javascript)
 * Los [apuntes de programación web del blog de Paquita Ribas](http://racovermell.com/)
 * [Blog Adictos al trabajo](https://www.adictosaltrabajo.com/tag/javascript/)
-* [Blog Arquitectur aJava](http://www.arquitecturajava.com/categoria/javascript-core/)
+* [Blog Arquitectura Java](http://www.arquitecturajava.com/categoria/javascript-core/)
 * [Blog SitePoint](https://www.sitepoint.com/%20javascript/)
 * Los 3 libros de [librosweb(Javascript,AJAX,JQuery)](http://librosweb.es/).
 * [Chuleta de JS](http://www.emezeta.com/articulos/javascript-cheatsheet-chuleta-js)
-* Publicar ejemplos online con [codepen](http://codepen.io/).
+* Publicar ejemplos online con [codepen](http://codepen.io/)
 * Los cursos online de [codeacademy](http://www.codecademy.com/)
